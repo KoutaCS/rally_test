@@ -15,7 +15,12 @@
                 name: {{image|e}}
               flavor:
                 name: {{flavor|e}}
-              force_delete: True
+              floating_network: "public123"
+              force_delete: true
+              command:
+                interpreter: "/bin/sh"
+                script_file: "./dummy.sh"
+            username: "nc-user"
           runner:
             constant:
               times: {{times}}
@@ -24,7 +29,6 @@
             quotas:
               neutron:
                 security_group: -1
-                floatingip: -1
             network: {}
           sla:
             failure_rate:
