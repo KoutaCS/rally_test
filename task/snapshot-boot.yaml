@@ -1,0 +1,27 @@
+---
+  version: 2
+  title: Nipa.Cloud boot snapshot test
+  description: test by boot by snapshot
+  subtasks:
+    -
+      title: Nipa.Cloud boot instance by snapshot
+      workloads:
+        {% for image in images %}
+        {% for flavor in flavors %}
+        -
+          scenario:
+            NipaCloud.boot_by_snapshot:
+              image:
+                name: {{image|e}}
+              flavor:
+                name: {{flavor|e}}
+          runner:
+            constant:
+              times: {{times}}
+              concurrency: {{concurrency}}
+          contexts: {}
+          sla:
+            failure_rate:
+              max: 0
+        {% endfor %}
+        {% endfor %}

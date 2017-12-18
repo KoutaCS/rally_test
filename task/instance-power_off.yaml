@@ -1,0 +1,28 @@
+---
+  version: 2
+  title: Nipa.Cloud Power-off instance test
+  description: test by turn-off and turn-on instance
+  subtasks:
+    -
+      title: Nipa.Cloud power-off instance test
+      workloads:
+        {% for image in images %}
+        {% for flavor in flavors %}
+        -
+          scenario:
+            NipaCloud.power_off_instance:
+              image: 
+                name: {{image|e}}
+              flavor: 
+                name: {{flavor|e}}
+              force_delete: true
+          runner:
+            constant:
+              times: {{times}}
+              concurrency: {{concurrency}}
+          contexts: {}
+          sla:
+            failure_rate:
+              max: 0
+        {% endfor %}
+        {% endfor %}

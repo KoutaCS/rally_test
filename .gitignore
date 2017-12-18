@@ -1,0 +1,16 @@
+./task/billing-continue_payment.yaml
+./task/billing-no_payment.yaml
+./task/external_ip-boot.yaml
+./task/external_ip-create_ip.yaml
+./task/instance-confirm_resize.yaml
+./task/instance-destroy.yaml
+./task/instance-hard_reboot.yaml
+./task/instance-power_off.yaml
+./task/instance-revirt_resize.yaml
+./task/instance-soft_reboot.yaml
+./task/keypair-boot.yaml
+./task/keypair-create_key.yaml
+./task/sec_group-create_group.yaml
+./task/sec_group-create_rule.yaml
+./task/snapshot-boot.yaml
+./task/snapshot-create.yaml

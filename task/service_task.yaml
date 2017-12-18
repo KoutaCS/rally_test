@@ -1,0 +1,360 @@
+---
+  version: 2
+  title: Nipa.Cloud Service Test
+  description: Instance test, Snapshot test, External IP test, Security group test 
+  subtasks:
+    -
+      title: Nipa.Cloud continue payment service
+      workloads:
+        {% for image in images %}
+        {% for flavor in flavors %}
+        -
+          scenario:
+            NipaCloud.billing_continue_payment:
+              image:
+                name: {{image|e}}
+              flavor:
+                name: {{flavor|e}}
+              force_delete: false
+          runner:
+            constant:
+              times: {{times}}
+              concurrency: {{concurrency}}
+          contexts: {}
+          sla:
+            failure_rate:
+              max: 0
+        {% endfor %}
+        {% endfor %}
+    -
+      title: Nipa.Cloud no payment service
+      workloads:
+        {% for image in images %}
+        {% for flavor in flavors %}
+        -
+          scenario:
+            NipaCloud.billing_no_payment:
+              image:
+                name: {{image|e}}
+              flavor:
+                name: {{flavor|e}}
+              force_delete: false
+          runner:
+            constant:
+              times: {{times}}
+              concurrency: {{concurrency}}
+          contexts: {}
+          sla:
+            failure_rate:
+              max: 0
+        {% endfor %}
+        {% endfor %}
+    -
+      title: Nipa.Cloud create and delete ip
+      workloads:
+        -
+          scenario:
+            NipaCloud.create_and_delete_floating_ip: 
+              floating_network: "public"
+              floating_ip_args: {}
+          runner:
+            constant:
+              times: {{times}}
+              concurrency: {{concurrency}}
+          contexts:
+            quotas:
+              neutron:
+                floatingip: -1
+          sla:
+            failure_rate:
+              max: 0
+    -
+      title: Nipa.Cloud boot and attach ip to it
+      workloads:
+        {% for image in images %}
+        {% for flavor in flavors %}
+        -
+          scenario: 
+            NipaCloud.boot_associate_dissociate_floating_ip_and_delete:
+              image:
+                name: {{image|e}}
+              flavor:
+                name: {{flavor|e}}
+          runner:
+            constant:
+              times: {{times}}
+              concurrency: {{concurrency}}
+          contexts:
+            network: {}
+          sla:
+            failure_rate:
+              max: 0
+        {% endfor %}
+        {% endfor %}
+    -
+      title: Nipa.Cloud confirm resize test
+      workloads:
+        {% for image in images %}
+        {% for flavor in resize_flavors %}
+          {% for old_flavor, lists in flavor.items() %}
+            {% for new_flavor in lists %}
+            -
+              scenario: 
+                NipaCloud.resize_instance:
+                  image:
+                    name: {{image}}
+                  flavor:
+                    name: {{old_flavor}}
+                  to_flavor:
+                    name: {{new_flavor}}
+                  confirm: true
+                  force_delete: true
+              runner:
+                constant:
+                  times: {{times}}
+                  concurrency: {{concurrency}}
+              contexts: {}
+              sla:
+                failure_rate:
+                  max: 0
+            {% endfor %}
+          {% endfor %}
+        {% endfor %}
+        {% endfor %}
+    -
+      title: Nipa.Cloud revirt resize test
+      workloads:
+        {% for image in images %}
+        {% for flavor in resize_flavors %}
+          {% for old_flavor, lists in flavor.items() %}
+            {% for new_flavor in lists %}
+            -
+              scenario: 
+                NipaCloud.resize_instance:
+                  image:
+                    name: {{image}}
+                  flavor:
+                    name: {{old_flavor}}
+                  to_flavor:
+                    name: {{new_flavor}}
+                  confirm: false
+                  force_delete: true
+              runner:
+                constant:
+                  times: {{times}}
+                  concurrency: {{concurrency}}
+              contexts: {}
+              sla:
+                failure_rate:
+                  max: 0
+            {% endfor %}
+          {% endfor %}
+        {% endfor %}
+        {% endfor %}
+    -
+      title: Nipa.Cloud power-off instance test
+      workloads:
+        {% for image in images %}
+        {% for flavor in flavors %}
+        -
+          scenario:
+            NipaCloud.power_off_instance:
+              image: 
+                name: {{image|e}}
+              flavor: 
+                name: {{flavor|e}}
+              force_delete: true
+          runner:
+            constant:
+              times: {{times}}
+              concurrency: {{concurrency}}
+          contexts: {}
+          sla:
+            failure_rate:
+              max: 0
+        {% endfor %}
+        {% endfor %}
+    -
+      title: Nipa.Cloud hard reboot test
+      workloads:
+        {% for image in images %}
+        {% for flavor in flavors %}
+        -
+          scenario:
+            NipaCloud.hard_reboot_instance:
+              image:
+                name: {{image|e}}
+              flavor:
+                name: {{flavor|e}}
+              force_delete: true
+          runner:
+            constant:
+              times: {{times}}
+              concurrency: {{concurrency}}
+          contexts: {}
+          sla:
+            failure_rate:
+              max: 0      
+        {% endfor %}
+        {% endfor %}
+    -
+      title: Nipa.Cloud soft reboot test
+      workloads:
+        {% for image in images %}
+        {% for flavor in flavors %}
+        -
+          scenario:
+            NipaCloud.soft_reboot_instance:
+              image:
+                name: {{image|e}}
+              flavor:
+                name: {{flavor|e}}
+              force_delete: true
+          runner:
+            constant:
+              times: {{times}}
+              concurrency: {{concurrency}}
+          contexts: {}
+          sla:
+            failure_rate:
+              max: 0
+        {% endfor %}
+        {% endfor %}
+    -
+      title: Nipa.Cloud destroy test
+      workloads:
+        {% for image in images %}
+        {% for flavor in flavors %}
+        -
+          scenario:
+            NipaCloud.destroy_instance:
+              image:
+                name: {{image|e}}
+              flavor:
+                name: {{flavor|e}}
+          runner:
+            constant:
+              times: {{times}}
+              concurrency: {{concurrency}}
+          contexts: {}
+          sla:
+            failure_rate:
+              max: 0
+        {% endfor %}
+        {% endfor %}
+    - 
+      title: Nipa.Cloud create and delete keypair test
+      workloads:
+        -
+          scenario: 
+            NipaCloud.create_and_delete_keypair: {}
+          runner:
+            constant:
+              times:  {{times}}
+              concurrency: {{concurrency}}
+          contexts: {}
+          sla:
+            failure_rate:
+              max: 0
+    -
+      title: Nipa.Cloud boot with keypair test
+      workloads:
+        {% for image in images %}
+        {% for flavor in flavors %}
+        -
+          scenario: 
+            NipaCloud.boot_with_keypair:
+              image:
+                name: {{image|e}}
+              flavor:
+                name: {{flavor|e}}
+          runner:
+            constant:
+              times: {{times}}
+              concurrency: {{concurrency}}
+          contexts: {}
+          sla:
+            failure_rate:
+              max: 0
+        {% endfor %}
+        {% endfor %}
+    -
+      title: Nipa.Cloud create and delete security group
+      workloads:
+        -
+          scenario: 
+            NipaCloud.create_and_delete_security_group: {}
+          runner:
+            constant:
+              times: {{times}}
+              concurrency: {{concurrency}}
+          contexts: 
+            quotas:
+              neutron: 
+                security_group: -1
+          sla:
+            failure_rate:
+              max: 0
+    -
+      title: Nipa.Cloud create and delete security group rule
+      workloads:
+        -
+          scenario: 
+            NipaCloud.create_and_delete_security_group_rule: {}
+          runner:
+            constant:
+              times: {{times}}
+              concurrency: {{concurrency}}
+          contexts:
+            quotas:
+              neutron: 
+                security_group: -1
+          sla:
+            failure_rate: 
+              max: 0
+    -
+      title: Nipa.Cloud take and delete snapshot test
+      workloads:
+        {% for image in images %}
+        {% for flavor in flavors %}
+        -
+          scenario:
+            NipaCloud.take_and_delete_snapshot:
+              image:
+                name: {{image|e}}
+              flavor:
+                name: {{flavor|e}}
+              force_delete: true
+          runner:
+            constant:
+              times: {{times}}
+              concurrency: {{concurrency}}
+          contexts: {}
+          sla:
+            failure_rate:
+              max: 0
+        {% endfor %}
+        {% endfor %}
+    -
+      title: Nipa.Cloud boot instance by snapshot
+      workloads:
+        {% for image in images %}
+        {% for flavor in flavors %}
+        -
+          scenario:
+            NipaCloud.boot_by_snapshot:
+              image:
+                name: {{image|e}}
+              flavor:
+                name: {{flavor|e}}
+          runner:
+            constant:
+              times: {{times}}
+              concurrency: {{concurrency}}
+          contexts: {}
+          sla:
+            failure_rate:
+              max: 0
+        {% endfor %}
+        {% endfor %}
+    

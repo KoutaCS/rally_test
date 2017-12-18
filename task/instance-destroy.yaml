@@ -1,0 +1,27 @@
+---
+  version: 2
+  title: Nipa.Cloud destroy test
+  description: test by destroy test
+  subtasks:
+    -
+      title: Nipa.Cloud destroy test
+      workloads:
+        {% for image in images %}
+        {% for flavor in flavors %}
+        -
+          scenario:
+            NipaCloud.destroy_instance:
+              image:
+                name: {{image|e}}
+              flavor:
+                name: {{flavor|e}}
+          runner:
+            constant:
+              times: {{times}}
+              concurrency: {{concurrency}}
+          contexts: {}
+          sla:
+            failure_rate:
+              max: 0
+        {% endfor %}
+        {% endfor %}

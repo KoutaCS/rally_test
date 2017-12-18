@@ -1,0 +1,10 @@
+---
+  images: #list image name 
+    - Ubuntu1604
+    - Windows
+  flavors: # list flavor name
+    - nc1.B
+  resize_flavors: # dict flavor name , resized flavor name
+    - nc1.B: ['nc1.C']
+  times: 10 #  amount of test (round)
+  concurrency: 2 # amount of load to test

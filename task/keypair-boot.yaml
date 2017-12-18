@@ -1,0 +1,27 @@
+---
+  version: 2
+  title: Nipa.Cloud Keypair test
+  description: Test by attach key to instance
+  subtasks:
+    -
+      title: Nipa.Cloud boot with keypair test
+      workloads:
+        {% for image in images %}
+        {% for flavor in flavors %}
+        -
+          scenario: 
+            NipaCloud.boot_with_keypair:
+              image:
+                name: {{image|e}}
+              flavor:
+                name: {{flavor|e}}
+          runner:
+            constant:
+              times: {{times}}
+              concurrency: {{concurrency}}
+          contexts: {}
+          sla:
+            failure_rate:
+              max: 0
+        {% endfor %}
+        {% endfor %}

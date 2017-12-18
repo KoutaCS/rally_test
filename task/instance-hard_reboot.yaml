@@ -1,0 +1,28 @@
+---
+  version: 2
+  title: Nipa.Cloud hard reboot test
+  description: test by hard reboot test
+  subtasks:
+    -
+      title: Nipa.Cloud hard reboot test
+      workloads:
+        {% for image in images %}
+        {% for flavor in flavors %}
+        -
+          scenario:
+            NipaCloud.hard_reboot_instance:
+              image:
+                name: {{image|e}}
+              flavor:
+                name: {{flavor|e}}
+              force_delete: true
+          runner:
+            constant:
+              times: {{times}}
+              concurrency: {{concurrency}}
+          contexts: {}
+          sla:
+            failure_rate:
+              max: 0      
+        {% endfor %}
+        {% endfor %}

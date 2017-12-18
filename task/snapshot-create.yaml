@@ -1,0 +1,28 @@
+---
+  version: 2
+  title: Nipa.Cloud take snapshot test
+  description: test by take and delete snapshot
+  subtasks:
+    -
+      title: Nipa.Cloud take and delete snapshot test
+      workloads:
+        {% for image in images %}
+        {% for flavor in flavors %}
+        -
+          scenario:
+            NipaCloud.take_and_delete_snapshot:
+              image:
+                name: {{image|e}}
+              flavor:
+                name: {{flavor|e}}
+              force_delete: true
+          runner:
+            constant:
+              times: {{times}}
+              concurrency: {{concurrency}}
+          contexts: {}
+          sla:
+            failure_rate:
+              max: 0
+        {% endfor %}
+        {% endfor %}

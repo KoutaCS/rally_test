@@ -1,0 +1,33 @@
+---
+  version: 2
+  title: Nipa.Cloud Launch Instance Test
+  description: Test by Launch Instance with IP, Security Group, Keypair
+  subtasks:
+    -
+      title: Launch Instance Test
+      workloads:
+        {% for image in images %}
+        {% for flavor in flavors %}
+        -
+          scenario:
+            NipaCloud.launch_single_instance:
+              image:
+                name: {{image|e}}
+              flavor:
+                name: {{flavor|e}}
+              force_delete: True
+          runner:
+            constant:
+              times: {{times}}
+              concurrency: {{concurrency}}
+          contexts:
+            quotas:
+              neutron:
+                security_group: -1
+                floatingip: -1
+            network: {}
+          sla:
+            failure_rate:
+              max: 0
+        {% endfor %}
+        {% endfor %}
