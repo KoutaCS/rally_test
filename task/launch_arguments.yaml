@@ -5,5 +5,3 @@
     - m1.tiny
   times: 10 # round to test
   concurrency: 2 # amount of load
-  AZ: # availability zone's name
-    - nova
