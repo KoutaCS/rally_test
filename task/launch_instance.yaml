@@ -15,12 +15,8 @@
                 name: {{image|e}}
               flavor:
                 name: {{flavor|e}}
-              floating_network: "public123"
               force_delete: true
-              command:
-                interpreter: "/bin/sh"
-                script_file: "./dummy.sh"
-            username: "nc-user"
+              availability_zone: {{AZ}}
           runner:
             constant:
               times: {{times}}
