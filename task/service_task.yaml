@@ -16,7 +16,7 @@
               flavor:
                 name: {{flavor|e}}
               force_delete: false
-              availability_zone: {{AZ}}
+              availability_zone: nova
           runner:
             constant:
               times: {{times}}
@@ -40,7 +40,7 @@
               flavor:
                 name: {{flavor|e}}
               force_delete: false
-              availability_zone: {{AZ}}
+              availability_zone: nova
           runner:
             constant:
               times: {{times}}
@@ -82,7 +82,7 @@
                 name: {{image|e}}
               flavor:
                 name: {{flavor|e}}
-              availability_zone: {{AZ}}
+              availability_zone: nova
           runner:
             constant:
               times: {{times}}
@@ -107,7 +107,7 @@
               flavor: 
                 name: {{flavor|e}}
               force_delete: true
-              availability_zone: {{AZ}}
+              availability_zone: nova
           runner:
             constant:
               times: {{times}}
@@ -131,7 +131,7 @@
               flavor:
                 name: {{flavor|e}}
               force_delete: true
-              availability_zone: {{AZ}}
+              availability_zone: nova
           runner:
             constant:
               times: {{times}}
@@ -155,7 +155,7 @@
               flavor:
                 name: {{flavor|e}}
               force_delete: true
-              availability_zone: {{AZ}}
+              availability_zone: nova
           runner:
             constant:
               times: {{times}}
@@ -178,7 +178,7 @@
                 name: {{image|e}}
               flavor:
                 name: {{flavor|e}}
-              availability_zone: {{AZ}}
+              availability_zone: nova
           runner:
             constant:
               times: {{times}}
@@ -215,7 +215,7 @@
                 name: {{image|e}}
               flavor:
                 name: {{flavor|e}}
-              availability_zone: {{AZ}}
+              availability_zone: nova
           runner:
             constant:
               times: {{times}}
@@ -273,7 +273,7 @@
               flavor:
                 name: {{flavor|e}}
               force_delete: true
-              availability_zone: {{AZ}}
+              availability_zone: nova
           runner:
             constant:
               times: {{times}}
@@ -296,7 +296,7 @@
                 name: {{image|e}}
               flavor:
                 name: {{flavor|e}}
-            availability_zone: {{AZ}}
+              availability_zone: nova
           runner:
             constant:
               times: {{times}}
