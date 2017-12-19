@@ -9,7 +9,7 @@ rally deployment use rally-deployment
 cd task
 
 # test
-rally task start service_task.yaml --task-args-file testing_arguments.yaml
+rally task start service_task.yaml --task-args-file launch_arguments.yaml
 rally task report --out ~/rally-result/service_test.html --open 
 rally task start launch_instance.yaml --task-args-file launch_arguments.yaml
 rally task report --out ~/rally-result/launch_test.html --open
