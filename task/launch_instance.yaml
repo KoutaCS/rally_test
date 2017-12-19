@@ -25,6 +25,7 @@
             quotas:
               neutron:
                 security_group: -1
+                floatingip: -1
             network: {}
           sla:
             failure_rate:
