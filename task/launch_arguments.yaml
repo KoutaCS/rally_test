@@ -1,7 +1,14 @@
 ---
   images: # list of image name
-    - cirros
+    - Centos6
+    - Centos7
+    - Debian8
+    - Debian9
+    - Fedora27
+    - Ubuntu1604
+    - Windows2012
   flavors: # list of flavor name
-    - m1.tiny
+    - nc1.C
+    - nc1.D
   times: 10 # round to test
   concurrency: 2 # amount of load
