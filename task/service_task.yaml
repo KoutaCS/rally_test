@@ -95,6 +95,66 @@
         {% endfor %}
         {% endfor %}
     -
+      title: Nipa.Cloud confirm resize test
+      workloads:
+        {% for image in images %}
+        {% for flavor in resize_flavors %}
+          {% for old_flavor, lists in flavor.items() %}
+            {% for new_flavor in lists %}
+            -
+              scenario: 
+                NipaCloud.resize_instance:
+                  image:
+                    name: {{image}}
+                  flavor:
+                    name: {{old_flavor}}
+                  to_flavor:
+                    name: {{new_flavor}}
+                  confirm: true
+                  force_delete: true
+              runner:
+                constant:
+                  times: {{times}}
+                  concurrency: {{concurrency}}
+              contexts: {}
+              sla:
+                failure_rate:
+                  max: 0
+            {% endfor %}
+          {% endfor %}
+        {% endfor %}
+        {% endfor %}
+    -
+      title: Nipa.Cloud revirt resize test
+      workloads:
+        {% for image in images %}
+        {% for flavor in resize_flavors %}
+          {% for old_flavor, lists in flavor.items() %}
+            {% for new_flavor in lists %}
+            -
+              scenario: 
+                NipaCloud.resize_instance:
+                  image:
+                    name: {{image}}
+                  flavor:
+                    name: {{old_flavor}}
+                  to_flavor:
+                    name: {{new_flavor}}
+                  confirm: false
+                  force_delete: true
+              runner:
+                constant:
+                  times: {{times}}
+                  concurrency: {{concurrency}}
+              contexts: {}
+              sla:
+                failure_rate:
+                  max: 0
+            {% endfor %}
+          {% endfor %}
+        {% endfor %}
+        {% endfor %}
+    -
       title: Nipa.Cloud power-off instance test
       workloads:
         {% for image in images %}
