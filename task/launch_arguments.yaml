@@ -11,4 +11,5 @@
     - nc1.C
     - nc1.D
   times: 10 # round to test
+  timeout: 10 
   concurrency: 2 # amount of load

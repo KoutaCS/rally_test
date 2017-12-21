@@ -21,6 +21,7 @@
             constant:
               times: {{times}}
               concurrency: {{concurrency}}
+              timeout: {{timeout}}
           contexts:
             quotas:
               neutron:

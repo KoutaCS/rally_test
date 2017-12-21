@@ -6,4 +6,5 @@
   resize_flavors: # dict flavor name , resized flavor name
     - nc1.C: ['nc1.D']
   times: 10 #  amount of test (round)
+  timeout: 10
   concurrency: 2 # amount of load to test
