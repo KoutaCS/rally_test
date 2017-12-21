@@ -8,4 +8,4 @@ rally deployment create --fromenv --name rally-deployment
 mkdir ~/.rally
 git clone https://github.com/KoutaCS/nipa.cloud_scenario ~/.rally/plugins
 
-. final.sh
+. performance_testing.sh
