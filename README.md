@@ -11,11 +11,11 @@
 
 ให้ผู้ใช้สร้าง rc file เพื่อกำหนด deployment เพื่อใช้ในการ performence testing
 
-หลังจากที่ clone project นี้แล้ว ให้ท่านทำการเปิดไฟล์ setup.sh แล้วแก้ไข Script โดยให้แก้ rc file จาก openrc เป็น file ที่ท่านใช้งานเช่น
+หลังจากที่ clone project นี้แล้ว ให้ท่านทำการเปิดไฟล์ first_time_setup.sh แล้วแก้ไข Script โดยให้แก้ rc file จาก openrc เป็น file ที่ท่านใช้งานเช่น
 ```
 source ~/dummyrc
 ```
-และแก้ไข path ที่ใช้ Activate rally บนไฟล์ setup.sh และ final.sh ตัวอย่างเช่น
+และแก้ไข path ที่ใช้ Activate rally บนไฟล์ first_time_setup.sh และ final.sh ตัวอย่างเช่น
 ```
 . [ต้นทางของpath]/rally/bin/activate
 ```
@@ -36,7 +36,7 @@ source ~/dummyrc
 
 ## Running the test
 
-ให้ผู้ใช้เข้า folder ที่ทำการ clone จากนั้นให้ run script ที่ชื่อว่า [setup.sh](https://github.com/KoutaCS/rally_test/blob/master/final.sh) หากทำการ run ครั้งแรก เพื่อทำการกำหนด deployment เพื่อทำการ performance testing หากทำการทดสอบครั้งถัดๆไปให้ใช้ [final.sh](https://github.com/KoutaCS/rally_test/blob/master/setup.sh) แทน
+ให้ผู้ใช้เข้า folder ที่ทำการ clone จากนั้นให้ run script ที่ชื่อว่า [first_time_setup.sh](https://github.com/KoutaCS/rally_test/blob/staging/first_time_setup.sh) หากทำการ run ครั้งแรก เพื่อทำการกำหนด deployment เพื่อทำการ performance testing หากทำการทดสอบครั้งถัดๆไปให้ใช้ [performance_testing.sh](https://github.com/KoutaCS/rally_test/blob/staging/performance_testing.sh) แทน
 
 ### Single Task
 หากต้องการ Test เพียง Task เดียว สามารถใช้งานได้โดยกำหนด Task file และ Argument file ที่ต้องการจะ Test จากนั้นให้ใช้คำสั่ง
