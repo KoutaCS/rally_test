@@ -36,7 +36,7 @@ source ~/dummyrc
 
 ## Running the test
 
-ให้ผู้ใช้เข้า folder ที่ทำการ clone จากนั้นให้ run script ที่ชื่อว่า [setup.sh](https://github.com/KoutaCS/rally_test/blob/master/final.sh) หากทำการ run ครั้งแรก เพื่อทำการกำหนด deployment เพื่อทำการ performance testing หากทำการทดสอบครั้งถัดๆไปให้ใช้ [final.sh](https://github.com/KoutaCS/rally_test/blob/master/setup.sh) แทน
+ให้ผู้ใช้เข้า folder ที่ทำการ clone จากนั้นให้ run script ที่ชื่อว่า [setup.sh](https://github.com/KoutaCS/rally_test/blob/master/setup.sh) หากทำการ run ครั้งแรก เพื่อทำการกำหนด deployment เพื่อทำการ performance testing หากทำการทดสอบครั้งถัดๆไปให้ใช้ [final.sh](https://github.com/KoutaCS/rally_test/blob/master/final.sh) แทน
 
 ### Single Task
 หากต้องการ Test เพียง Task เดียว สามารถใช้งานได้โดยกำหนด Task file และ Argument file ที่ต้องการจะ Test จากนั้นให้ใช้คำสั่ง
